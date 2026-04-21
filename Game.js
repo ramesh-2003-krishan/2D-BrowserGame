@@ -7,6 +7,9 @@ let y = canvas.height - 200;
 let dx = 2;
 let dy = -2;
 
+const ballWidth = 50;
+const ballHeight = 50;
+
 function draw() {
 ctx.beginPath();
 ctx.arc(x, y, 20, 0, 2 * Math.PI);
@@ -15,12 +18,22 @@ ctx.fill();
 ctx.stroke();
 }
 
+
+
 function moveBall() {
 ctx.clearRect(0, 0, canvas.width, canvas.height);
 draw();
 
 x += dx;
 y += dy;
+
+if ( x  > canvas.width || x < 0){
+    dx *= -1;
+}
+if(y > canvas.height || y < 0){
+    dy *= -1;
+}
+
 
 requestAnimationFrame(moveBall);
 }
