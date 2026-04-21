@@ -63,10 +63,10 @@ else if(e.key == "Left" || e.key == "ArrowLeft") {
 
 
 function drawScore() {
-ctx.font = "16px Arial";
+ctx.font = "32px Arial";
 ctx.fillStyle = "#0095DD";
-ctx.fillText("Score: "+score, 8, 20);
-ctx.fillText("High Score: "+highScore, 8, 40);
+ctx.fillText("Score: "+score, 8, 30);
+ctx.fillText("High Score: "+highScore, 8, 70);
 }
 
 
