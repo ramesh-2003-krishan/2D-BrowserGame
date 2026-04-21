@@ -13,6 +13,11 @@ let highScore = localStorage.getItem("highScore") || 0;
 highScore = parseInt(highScore);
 
 
+let level = 1;
+let nextLevelScore = 10;
+let increment = 10;
+
+
 const ballWidth = 50;
 const ballHeight = 50;
 
@@ -67,8 +72,26 @@ ctx.font = "32px Arial";
 ctx.fillStyle = "#0095DD";
 ctx.fillText("Score: "+score, 8, 30);
 ctx.fillText("High Score: "+highScore, 8, 70);
+ctx.fillText("Level: "+level, 8, 110);
 }
 
+
+function updateLevel() {
+if(score >= nextLevelScore) {
+    level++;
+
+    let speed = 1 * level;
+    dx = Math.sign(dx)* speed;
+    dy = Math.sign(dy)* speed;
+
+    nextLevelScore += increment;
+
+    if(increment < 100) {
+        increment *=2;
+    }
+}
+}
+  
 
 
 
@@ -101,6 +124,7 @@ if( y-20 < 0 ){
 if(y + 20 > canvas.height - paddleHeight && x > paddleX && x < paddleX + paddleWidth){
     dy *= -1;
     score++;
+    updateLevel();
 }else if( y+20 > canvas.height){
     if(score > highScore){
         localStorage.setItem("highScore", score);
