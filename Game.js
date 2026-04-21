@@ -7,7 +7,11 @@ let y = canvas.height - 200;
 let dx = 2;
 let dy = -2;
 
+
 let score = 0;
+let highScore = localStorage.getItem("highScore") || 0;
+highScore = parseInt(highScore);
+
 
 const ballWidth = 50;
 const ballHeight = 50;
@@ -23,6 +27,8 @@ ctx.fillStyle = 'blue';
 ctx.fill();
 ctx.closePath();
 }
+
+
 
 function drawPaddle() {
 ctx.beginPath();
@@ -60,6 +66,7 @@ function drawScore() {
 ctx.font = "16px Arial";
 ctx.fillStyle = "#0095DD";
 ctx.fillText("Score: "+score, 8, 20);
+ctx.fillText("High Score: "+highScore, 8, 40);
 }
 
 
@@ -95,6 +102,10 @@ if(y + 20 > canvas.height - paddleHeight && x > paddleX && x < paddleX + paddleW
     dy *= -1;
     score++;
 }else if( y+20 > canvas.height){
+    if(score > highScore){
+        localStorage.setItem("highScore", score);
+        highScore = score;
+    }
     alert("Game Over");
     document.location.reload();
     return;
