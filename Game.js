@@ -75,10 +75,13 @@ if(leftPressed) {
 if ( x  > canvas.width || x < 0){
     dx *= -1;
 }
-if( y < 0){
+if( y < 0 ){
     dy *= -1;
 }
-if( y > canvas.height){
+
+if(y + 20 > canvas.height - paddleHeight && x > paddleX && x < paddleX + paddleWidth){
+    dy *= -1;
+}else if( y+20 > canvas.height){
     alert("Game Over");
     document.location.reload();
     return;
