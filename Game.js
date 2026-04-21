@@ -7,6 +7,8 @@ let y = canvas.height - 200;
 let dx = 2;
 let dy = -2;
 
+let score = 0;
+
 const ballWidth = 50;
 const ballHeight = 50;
 
@@ -54,11 +56,21 @@ else if(e.key == "Left" || e.key == "ArrowLeft") {
 }
 
 
+function drawScore() {
+ctx.font = "16px Arial";
+ctx.fillStyle = "#0095DD";
+ctx.fillText("Score: "+score, 8, 20);
+}
+
+
+
+
 function moveBall() {
 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 draw();
 drawPaddle();
+drawScore();
 
 
 x += dx;
@@ -72,15 +84,16 @@ if(leftPressed) {
 }
 
 
-if ( x  > canvas.width || x < 0){
+if ( x+20 > canvas.width || x < 0){
     dx *= -1;
 }
-if( y < 0 ){
+if( y-20 < 0 ){
     dy *= -1;
 }
 
 if(y + 20 > canvas.height - paddleHeight && x > paddleX && x < paddleX + paddleWidth){
     dy *= -1;
+    score++;
 }else if( y+20 > canvas.height){
     alert("Game Over");
     document.location.reload();
