@@ -10,6 +10,8 @@ let dy = -2;
 const ballWidth = 50;
 const ballHeight = 50;
 
+
+
 function draw() {
 ctx.beginPath();
 ctx.arc(x, y, 20, 0, 2 * Math.PI);
@@ -30,10 +32,14 @@ y += dy;
 if ( x  > canvas.width || x < 0){
     dx *= -1;
 }
-if(y > canvas.height || y < 0){
+if( y < 0){
     dy *= -1;
 }
-
+if(y> canvas.height){
+    alert("Game Over");
+    document.location.reload();
+    return;
+}
 
 requestAnimationFrame(moveBall);
 }
