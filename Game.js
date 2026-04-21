@@ -30,6 +30,29 @@ ctx.fill();
 ctx.closePath();
 }
 
+document.addEventListener("keydown", keyDownHandler);
+document.addEventListener("keyup", keyUpHandler);
+
+let rightPressed = false;
+let leftPressed = false;
+
+function keyDownHandler(e) {
+if(e.key == "Right" || e.key == "ArrowRight") {
+    rightPressed = true;
+}
+else if(e.key == "Left" || e.key == "ArrowLeft") {
+    leftPressed = true;
+}
+}
+function keyUpHandler(e) {
+if(e.key == "Right" || e.key == "ArrowRight") {
+    rightPressed = false;
+}
+else if(e.key == "Left" || e.key == "ArrowLeft") {
+    leftPressed = false;
+}
+}
+
 
 function moveBall() {
 ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -40,6 +63,14 @@ drawPaddle();
 
 x += dx;
 y += dy;
+
+if(rightPressed) {
+    paddleX = Math.min( canvas.width - paddleWidth, paddleX + 7);
+}
+if(leftPressed) {
+    paddleX = Math.max( 0, paddleX - 7);
+}
+
 
 if ( x  > canvas.width || x < 0){
     dx *= -1;
