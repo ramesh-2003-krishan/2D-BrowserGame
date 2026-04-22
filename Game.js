@@ -12,6 +12,24 @@ let bgImage = new Image();
 bgImage.src = "gam.png";
 
 
+let bgMusic = new Audio("backmu.mp3");
+bgMusic.loop = true;
+bgMusic.volume = 0.2;
+bgMusic.play();
+
+let musicStart = false;
+
+function startMusic() {
+if(!musicStart) {
+    bgMusic.play();
+    musicStart = true;
+}
+}
+
+let hitSound = new Audio("hit.mp3");
+
+let loseSound = new Audio("lose.mp3");
+loseSound.volume = 0.5;
 
 let score = 0;
 let highScore = localStorage.getItem("highScore") || 0;
@@ -55,6 +73,9 @@ let rightPressed = false;
 let leftPressed = false;
 
 function keyDownHandler(e) {
+
+ startMusic();
+
 if(e.key == "Right" || e.key == "ArrowRight") {
     rightPressed = true;
 }
@@ -63,6 +84,9 @@ else if(e.key == "Left" || e.key == "ArrowLeft") {
 }
 }
 function keyUpHandler(e) {
+
+ startMusic();
+
 if(e.key == "Right" || e.key == "ArrowRight") {
     rightPressed = false;
 }
@@ -129,6 +153,7 @@ if( y-20 < 0 ){
 }
 
 if(y + 20 > canvas.height - paddleHeight && x > paddleX && x < paddleX + paddleWidth){
+    hitSound.play();
     dy *= -1;
     score++;
     updateLevel();
@@ -137,6 +162,11 @@ if(y + 20 > canvas.height - paddleHeight && x > paddleX && x < paddleX + paddleW
         localStorage.setItem("highScore", score);
         highScore = score;
     }
+    
+
+    bgMusic.pause();
+    bgMusic.currentTime = 0;
+    loseSound.play();
     alert("Game Over");
     document.location.reload();
     return;
