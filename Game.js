@@ -65,6 +65,9 @@ let nextLevelScore = 10;
 let increment = 10;
 
 
+let isPaused = false;
+
+
 const ballWidth = 50;
 const ballHeight = 50;
 
@@ -113,6 +116,16 @@ function keyUpHandler(e) {
 
  startMusic();
 
+ if(e.key == "p" || e.key == "P") {
+    isPaused = !isPaused;
+    if(!isPaused) {
+        moveBall();
+    }
+    return;
+}  
+    
+
+
 if(e.key == "Right" || e.key == "ArrowRight") {
     rightPressed = false;
 }
@@ -152,6 +165,14 @@ if(score >= nextLevelScore) {
 
 
 function moveBall() {
+
+    if(isPaused) {
+        ctx.font = "48px Arial";
+        ctx.fillStyle = "#ffffff";
+        ctx.textAlign = "center";
+        ctx.fillText("PAUSED", canvas.width / 2, canvas.height / 2);
+        return;
+    }
 
 
 ctx.clearRect(0, 0, canvas.width, canvas.height);
