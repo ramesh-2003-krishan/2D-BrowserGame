@@ -28,7 +28,7 @@ bgMusic.volume = 0.2;
 let musicStart = false;
 
 function startMusic() {
-if(!musicStart) {
+if(!musicStart && soundOn) {
     bgMusic.play();
     musicStart = true;
 }
@@ -38,6 +38,22 @@ let hitSound = new Audio("hit.mp3");
 
 let loseSound = new Audio("lose.mp3");
 loseSound.volume = 0.5;
+
+let soundOn = true;
+
+document.getElementById("soundToggle").addEventListener("click", function() {
+    soundOn = !soundOn;
+    if(soundOn) {
+        this.innerText = "Sound: ON";
+        bgMusic.play();
+    } else {
+        this.innerText = "Sound: OFF";
+        bgMusic.pause();
+    }
+});
+
+let ballColor = "#ffffff";
+
 
 let score = 0;
 let highScore = localStorage.getItem("highScore") || 0;
@@ -57,12 +73,14 @@ const paddleHeight = 10;
 let paddleX = (canvas.width - paddleWidth) / 2;
 
 function draw() {
-ctx.beginPath();
-ctx.arc(x, y, 20, 0, 2 * Math.PI);
-ctx.fillStyle = 'white';
-ctx.fill();
-ctx.closePath();
+    ctx.beginPath();
+    ctx.arc(x, y, 20, 0, 2 * Math.PI);
+    ctx.fillStyle = ballColor;
+    ctx.fill();
+    ctx.closePath();
 }
+
+
 
 
 
@@ -105,8 +123,6 @@ else if(e.key == "Left" || e.key == "ArrowLeft") {
 
 
 function drawScore() {
-
-
 
 ctx.font = "32px Arial";
 ctx.fillStyle = "#ffffff";
@@ -173,7 +189,9 @@ if( y-20 < 0 ){
 }
 
 if(y + 20 > canvas.height - paddleHeight && x > paddleX && x < paddleX + paddleWidth){
-    hitSound.play();
+    if(soundOn) {
+        hitSound.play();
+    }
     dy *= -1;
     score++;
     updateLevel();
@@ -202,8 +220,47 @@ document.getElementById("startButton").addEventListener("click", function() {
     gameStarted = true;
     startMusic();
     moveBall();
-    this.style.display = "none";
+    
+    document.querySelector(".menu").style.display = "none";
 
 });
+
+document.getElementById("highScoresButton").addEventListener("click", function() {
+    let highScore = localStorage.getItem("highScore") || 0;
+    alert("High Score: " + highScore);
+});
+
+document.getElementById("optionsButton").addEventListener("click", function() {
+    document.querySelector(".menu").style.display = "none";
+    document.getElementById("optionsMenu").style.display = "block";
+    
+});
+
+document.getElementById("backBtn").addEventListener("click", function() {
+    document.getElementById("optionsMenu").style.display = "none";
+    document.querySelector(".menu").style.display = "block";
+});
+
+document.getElementById("ballColor").addEventListener("change", function() {
+    ballColor = this.value;
+});
+
+document.getElementById("highScoresButton").addEventListener("click", function() {
+    document.querySelector(".menu").style.display = "none";
+    document.getElementById("highScoresMenu").style.display = "block";
+
+    let highScore = localStorage.getItem("highScore") || 0;
+    document.getElementById("highScoresList").innerHTML = "<li>🏆 High Score: " + highScore + "</li>";
+    
+    }
+
+);
+
+document.getElementById("backBtn2").addEventListener("click", function() {
+    document.getElementById("highScoresMenu").style.display = "none";
+    document.querySelector(".menu").style.display = "block";
+});
+
+
 
 moveBall();
