@@ -6,8 +6,9 @@ let gameStarted = false;
 let x = canvas.width / 2;
 let y = canvas.height - 200;
 
-let dx = 2;
-let dy = -2;
+let dx = 5;
+let dy = -5;
+
 
 
 let bgImage = new Image();
@@ -149,7 +150,7 @@ function updateLevel() {
 if(score >= nextLevelScore) {
     level++;
 
-    let speed = 1.5 * level;
+    let speed = 2 + level * 2;
     dx = Math.sign(dx)* speed;
     dy = Math.sign(dy)* speed;
 
