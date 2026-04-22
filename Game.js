@@ -13,6 +13,12 @@ let dy = -2;
 let bgImage = new Image();
 bgImage.src = "gam.png";
 
+let bgImageStart = false;
+bgImage.onload = function() {
+    bgImageStart = true;
+    moveBall();
+};
+
 
 let bgMusic = new Audio("backmu.mp3");
 bgMusic.loop = true;
@@ -99,6 +105,9 @@ else if(e.key == "Left" || e.key == "ArrowLeft") {
 
 
 function drawScore() {
+
+
+
 ctx.font = "32px Arial";
 ctx.fillStyle = "#ffffff";
 ctx.fillText("Score: "+score, 70, 30);
@@ -136,7 +145,7 @@ if(!gameStarted) {
     ctx.font = "48px Arial";
     ctx.fillStyle = "#ffffff";
     ctx.textAlign = "center";
-    ctx.fillText("Press Start to Play", canvas.width / 2, canvas.height / 2);
+    
     return;
 }
 
