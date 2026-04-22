@@ -38,20 +38,21 @@ Control the paddle, bounce the ball, score points, and level up as the speed inc
 ---
 
 ## 📂 Project Structure
-ARCADE-B-ARENA/
-│
-├── index.html # Main HTML file
-├── Game.css # Styling (UI + effects)
-├── Game.js # Game logic
-│
-├── assets/
-│ ├── gam.png # Background image
-│ ├── logo.png # Game logo
-│ ├── backmu.mp3 # Background music
-│ ├── hit.mp3 # Hit sound
-│ └── lose.mp3 # Game over sound
-│
-└── README.md
+
+-ARCADE-B-ARENA/
+-│
+-├── index.html # Main HTML file
+-├── Game.css # Styling (UI + effects)
+-├── Game.js # Game logic
+-│
+-├── assets/
+-│ ├── gam.png # Background image
+-│ ├── logo.png # Game logo
+-│ ├── backmu.mp3 # Background music
+-│ ├── hit.mp3 # Hit sound
+-│ └── lose.mp3 # Game over sound
+-│
+-└── README.md
 
 
 ---
@@ -74,17 +75,6 @@ https://github.com/ramesh-2003-krishan/2D-BrowserGame
 
 ---
 
----
 
-##If you want next upgrade, I can also:
 
--🔥 :contentReference[oaicite:0]{index=0}
 
--🎮 :contentReference[oaicite:1]{index=1}
-
--🌐 :contentReference[oaicite:2]{index=2}
-
--💼 Or :contentReference[oaicite:3]{index=3}
-
-Just tell me 👍
----
