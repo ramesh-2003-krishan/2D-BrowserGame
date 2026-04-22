@@ -8,6 +8,11 @@ let dx = 2;
 let dy = -2;
 
 
+let bgImage = new Image();
+bgImage.src = "gam.png";
+
+
+
 let score = 0;
 let highScore = localStorage.getItem("highScore") || 0;
 highScore = parseInt(highScore);
@@ -28,7 +33,7 @@ let paddleX = (canvas.width - paddleWidth) / 2;
 function draw() {
 ctx.beginPath();
 ctx.arc(x, y, 20, 0, 2 * Math.PI);
-ctx.fillStyle = 'blue';
+ctx.fillStyle = 'white';
 ctx.fill();
 ctx.closePath();
 }
@@ -38,7 +43,7 @@ ctx.closePath();
 function drawPaddle() {
 ctx.beginPath();
 ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-ctx.fillStyle = 'black';
+ctx.fillStyle = 'yellow';
 ctx.fill();
 ctx.closePath();
 }
@@ -69,7 +74,7 @@ else if(e.key == "Left" || e.key == "ArrowLeft") {
 
 function drawScore() {
 ctx.font = "32px Arial";
-ctx.fillStyle = "#0095DD";
+ctx.fillStyle = "#ffffff";
 ctx.fillText("Score: "+score, 8, 30);
 ctx.fillText("High Score: "+highScore, 8, 70);
 ctx.fillText("Level: "+level, 8, 110);
@@ -80,7 +85,7 @@ function updateLevel() {
 if(score >= nextLevelScore) {
     level++;
 
-    let speed = 1 * level;
+    let speed = 1.5 * level;
     dx = Math.sign(dx)* speed;
     dy = Math.sign(dy)* speed;
 
@@ -97,6 +102,8 @@ if(score >= nextLevelScore) {
 
 function moveBall() {
 ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+ctx.drawImage(bgImage, 0, 0, canvas.width, canvas.height);
 
 draw();
 drawPaddle();
