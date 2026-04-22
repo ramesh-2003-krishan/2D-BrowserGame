@@ -60,7 +60,7 @@ ARCADE-B-ARENA/
 
 ### Download or Clone Repository
 ```bash
-git clone https://github.com/your-username/ARCADE-B-ARENA.git
+https://github.com/ramesh-2003-krishan/2D-BrowserGame
 
 ```
 ---
@@ -76,10 +76,10 @@ git clone https://github.com/your-username/ARCADE-B-ARENA.git
 
 ---
 
-If you want next upgrade, I can also:
-🔥 :contentReference[oaicite:0]{index=0}
-🎮 :contentReference[oaicite:1]{index=1}
-🌐 :contentReference[oaicite:2]{index=2}
-💼 Or :contentReference[oaicite:3]{index=3}
+##If you want next upgrade, I can also:
+-🔥 :contentReference[oaicite:0]{index=0}
+-🎮 :contentReference[oaicite:1]{index=1}
+-🌐 :contentReference[oaicite:2]{index=2}
+-💼 Or :contentReference[oaicite:3]{index=3}
 
 Just tell me 👍
