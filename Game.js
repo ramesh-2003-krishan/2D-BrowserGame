@@ -1,6 +1,8 @@
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 
+let gameStarted = false;
+
 let x = canvas.width / 2;
 let y = canvas.height - 200;
 
@@ -15,7 +17,7 @@ bgImage.src = "gam.png";
 let bgMusic = new Audio("backmu.mp3");
 bgMusic.loop = true;
 bgMusic.volume = 0.2;
-bgMusic.play();
+
 
 let musicStart = false;
 
@@ -99,9 +101,9 @@ else if(e.key == "Left" || e.key == "ArrowLeft") {
 function drawScore() {
 ctx.font = "32px Arial";
 ctx.fillStyle = "#ffffff";
-ctx.fillText("Score: "+score, 8, 30);
-ctx.fillText("High Score: "+highScore, 8, 70);
-ctx.fillText("Level: "+level, 8, 110);
+ctx.fillText("Score: "+score, 70, 30);
+ctx.fillText("High Score: "+highScore, 128, 70);
+ctx.fillText("Level: "+level, 70, 110);
 }
 
 
@@ -125,9 +127,18 @@ if(score >= nextLevelScore) {
 
 
 function moveBall() {
-ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+
+ctx.clearRect(0, 0, canvas.width, canvas.height);
 ctx.drawImage(bgImage, 0, 0, canvas.width, canvas.height);
+
+if(!gameStarted) {
+    ctx.font = "48px Arial";
+    ctx.fillStyle = "#ffffff";
+    ctx.textAlign = "center";
+    ctx.fillText("Press Start to Play", canvas.width / 2, canvas.height / 2);
+    return;
+}
 
 draw();
 drawPaddle();
@@ -174,5 +185,16 @@ if(y + 20 > canvas.height - paddleHeight && x > paddleX && x < paddleX + paddleW
 
 requestAnimationFrame(moveBall);
 }
+
+document.getElementById("startButton").addEventListener("click", function() {
+
+    console.log("Start button clicked");
+
+    gameStarted = true;
+    startMusic();
+    moveBall();
+    this.style.display = "none";
+
+});
 
 moveBall();
